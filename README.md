@@ -25,37 +25,64 @@
 ## **INTRODUCTION**
 
 
-Shotgun metagenomic sequencing is a high-resolution approach to study the microbial communities in complex environments such as soil, water, plants, and the human body. Unlike amplicon sequencing (e.g., 16S rRNA), which targets specific marker genes, shotgun metagenomics sequences all genetic material in a sample.
+Shotgun metagenomic sequencing is a high-resolution approach to study the microbial communities in complex environments such as soil, water, plants, and the human body. Unlike amplicon sequencing (e.g., 16S rRNA), which targets specific marker genes, shotgun metagenomics approach sequences all genetic material in a sample.
+
+
+<br />
 
 This allows researchers to:
 
 - Identify microbial taxa down to species or strain level
 
-- Characterize the functional potential of the community (genes, pathways, and metabolic functions)
+- Characterize the functional genes, pathways, and metabolic functions of the microbial community
 
 - Detect antimicrobial resistance (AMR) genes, virulence factors, and mobile genetic elements
 
 - Reconstruct metagenome-assembled genomes (MAGs) to study novel microbes
 
 
+<br />
+
+
 Shotgun metagenomics combines bioinformatics, statistics, and visualization to answer key biological and ecological questions, such as:
 
-- What organisms are present? (Taxonomic composition)
 
-- How diverse is the community? (Alpha and beta diversity)
+- What organisms are present? 
 
-- Which genes and pathways are enriched under different conditions? (Functional profiling)
-
-- How does the community resist antibiotics or environmental stress? (AMR analysis)
-
-- Can we reconstruct near-complete microbial genomes from mixed samples? (MAG recovery)
+> To answer this question, you need to analyse the **Taxonomic Composition**
 
 
-By integrating quality control, taxonomic classification, diversity metrics, functional profiling, AMR detection, and network analysis, shotgun metagenomics provides a comprehensive view of the microbiome and its role in health, disease, and ecosystems.
+- How diverse is the community? 
 
+> To answer this question, you need to analyse the **Alpha and Beta diversity**
+
+
+- Which genes and pathways are enriched under different conditions? 
+
+> To answer this question, you need to carry out **Functional Profiling**
+
+
+- How does the community resist antibiotics or environmental stress? 
+
+> To answer this question, you need to carry out **AMR Analysis**
+
+
+- Can we reconstruct near-complete microbial genomes from mixed samples? 
+
+> To answer this question, you need to perform *de novo* genome assembly (MAG recovery)
+
+
+<br />
+
+By integrating quality control, taxonomic classification, diversity metrics, functional profiling, AMR detection, and network analysis, shotgun metagenomics provides a comprehensive view of the microbiome and its role in the corresponding environment.
+
+<br />
 
 This repository provides a brief guide to shotgun metagenomic microbiome analysis.  
-It walks through **analysis steps, methods, visualisation techniques, and some examples of tested hypotheses**.
+It walks through **analysis steps, methods, visualisation techniques, and some examples of relevant hypotheses**.
+
+
+<br />
 
 
 ## **KEYWORDS**
@@ -64,186 +91,325 @@ It walks through **analysis steps, methods, visualisation techniques, and some e
 **Analysis • Methodology • Visualisation • Hypothesis Testing**
 
 
+<br />
+
+
 ## **CONTENT**
 
 
  
 
+<br />
 
----
 
-## **1. Data Processing & Quality Control**
+## **1. DATA PROCESSING & QUALITY CONTROL**
 
 **Methodology**
-- Check sequencing quality (FastQC, MultiQC).  
-- Trim adapters & low-quality bases (Trimmomatic, fastp).  
-- Remove host DNA by aligning to host genome (Bowtie2, BWA).  
-- Keep high-quality reads for downstream analyses.  
+
+- Check sequencing quality (FastQC, MultiQC)
+  
+- Trim adapters & low-quality bases (Trimmomatic, fastp)
+  
+- Remove host DNA by aligning to host genome (Bowtie2, BWA)
+  
+- Keep high-quality reads for downstream analyses
+ 
 
 **Visualisations**
-- QC plots (per-base quality, GC content).  
-- Read retention barplots (raw → trimmed → host-removed).  
+
+- QC plots (per-base quality, GC content)
+  
 
 **Hypotheses**
+
 - Are sequencing depth and quality consistent across samples?  
+
 - Do host reads disproportionately affect certain samples?  
 
----
 
-## **2. Taxonomic Composition**
+<br />
 
-**Methodology**
-- Assign taxonomy using k-mer–based (Kraken2, Bracken) or marker-based (MetaPhlAn) classifiers.  
-- Generate relative abundance tables at phylum/genus/species levels.  
 
-**Visualisations**
-- Stacked barplots of taxa.  
-- Heatmaps of abundance.  
-- Krona charts for interactive hierarchical views.  
-
-**Hypotheses**
-- Do microbial communities differ in composition between groups (e.g., healthy vs diseased)?  
-- Tests: PERMANOVA, ANOSIM, DESeq2, ANCOM, MaAsLin2.  
-
----
-
-## **3. Diversity Analyses**
+## **2. TAXONOMIC COMPOSITION**
 
 **Methodology**
-- **Alpha diversity**: Shannon, Simpson, Chao1 indices.  
-- **Beta diversity**: Distance matrices (Bray–Curtis, Jaccard, UniFrac).  
-- Ordination methods: PCoA, PCA, NMDS.  
+
+- Assign taxonomy using k-mer–based (Kraken2, Bracken) or marker-based (MetaPhlAn) classifiers
+  
+- Generate relative abundance tables at phylum/genus/species levels
+  
 
 **Visualisations**
-- Boxplots of alpha diversity.  
-- PCoA/PCA ordination plots.  
-- Dendrograms.  
+
+- Stacked barplots of taxa
+  
+- Heatmaps of abundance
+
+- Krona (interactive) or sunburst charts for hierarchical views 
+ 
 
 **Hypotheses**
+
+- Do microbial communities differ in composition between groups (e.g., healthy vs diseased or treatment vs control etc)? 
+ 
+- Tests: PERMANOVA, ANOSIM, DESeq2, ANCOM, MaAsLin2
+
+
+<br />
+
+
+## **3. DIVERSITY ANALYSES**
+
+**Methodology**
+
+- **Alpha diversity**: Shannon, Simpson, Chao1 indices
+ 
+- **Beta diversity**: Distance matrices (Bray–Curtis, Jaccard, UniFrac)
+
+- Ordination methods: PCoA, PCA, NMDS
+ 
+
+**Visualisations**
+
+- Boxplots of alpha diversity
+
+- PCoA/PCA ordination plots
+ 
+- Dendrograms
+
+**Hypotheses**
+
 - Is within-sample diversity (alpha) different between groups?  
+
 - Is between-sample variation (beta) greater across conditions?  
-- Tests: Mann–Whitney, Kruskal–Wallis, PERMANOVA.  
 
----
+- Tests: Mann–Whitney, Kruskal–Wallis, PERMANOVA
+  
 
-## **4. Differential Abundance**
+<br />
+
+
+## **4. DIFFERENTIAL ABUNDANCE**
 
 **Methodology**
-- Normalise counts (library size correction, CLR transformation).  
-- Apply statistical models (DESeq2, LEfSe, ANCOM, MaAsLin2).  
+
+- Normalise counts (library size correction, CLR transformation)
+ 
+- Apply statistical models (DESeq2, LEfSe, ANCOM, MaAsLin2)
+ 
 
 **Visualisations**
-- Volcano plots.  
-- Heatmaps of significant taxa.  
-- LEfSe cladograms.  
+
+- Volcano plots
+ 
+- Heatmaps of significant taxa
+ 
+- LEfSe cladograms
+  
 
 **Hypotheses**
+
 - Which taxa are enriched or depleted under certain conditions?  
 
----
 
-## **5. Functional Profiling**
+<br />
+
+
+
+## **5. FUNCTIONAL PROFILING**
+
 
 **Methodology**
-- Assign gene families (eggNOG, KEGG orthologs).  
-- Aggregate into pathways (MetaCyc, KEGG modules).  
-- Quantify pathway abundances (HUMAnN3).  
+
+- Assign gene families (eggNOG, KEGG orthologs)
+  
+- Aggregate into pathways (MetaCyc, KEGG modules)
+ 
+- Quantify pathway abundances (HUMAnN3)
+ 
 
 **Visualisations**
-- Heatmaps of pathway abundance.  
-- Barplots of differential pathways.  
-- Bubble plots for enrichment.  
+
+- Heatmaps of pathway abundance
+  
+- Barplots of differential pathways
+ 
+- Bubble plots for enrichment
+ 
 
 **Hypotheses**
+
 - Do microbial functions differ significantly between conditions?  
-- Are certain metabolic pathways enriched in disease states?  
-- Tests: GSEA, Fisher’s exact, regression models.  
 
----
+- Are certain metabolic pathways enriched in disease states? 
+ 
+- Tests: GSEA, Fisher’s exact, regression models
+ 
 
-## **6. Antimicrobial Resistance (AMR) Analysis**
+<br />
+
+
+## **6. ANTIMICROBIAL RESISTANCE (AMR) ANALYSIS**
+
 
 **Methodology**
-- Map reads/contigs against AMR gene databases (CARD, ResFinder, ARG-ANNOT, MEGARes).  
-- Quantify resistance genes by class and mechanism.  
-- Normalise by sequencing depth (RPKM, CPM).  
+
+- Map reads/contigs against AMR gene databases (CARD, ResFinder, ARG-ANNOT, MEGARes)
+  
+- Quantify resistance genes by class and mechanism
+  
+- Normalise by sequencing depth (RPKM, CPM)
+  
 
 **Visualisations**
-- Barplots of AMR gene classes.  
-- Heatmaps of resistance genes across samples.  
-- Network diagrams of AMR gene–taxa associations.  
+
+- Barplots of AMR gene classes
+ 
+- Heatmaps of resistance genes across samples
+ 
+- Network diagrams of AMR gene–taxa associations
+
 
 **Hypotheses**
-- Are AMR genes more abundant in treatment vs control groups?  
-- Do certain environments (e.g., hospital wastewater vs soil) carry distinct AMR profiles?  
-- Tests: DESeq2, MaAsLin2, correlation with metadata.  
 
----
+- Are AMR genes more abundant in treatment vs control groups? 
+ 
+- Do certain environments (e.g., hospital wastewater vs soil) carry distinct AMR profiles?  
+
+- Tests: DESeq2, MaAsLin2, correlation with metadata
+
+
+<br />
+
 
 ## **7. Metagenome-Assembled Genomes (MAGs)**
 
-**Methodology**
-- Assemble reads (MEGAHIT, metaSPAdes).  
-- Bin contigs (MetaBAT, MaxBin, CONCOCT).  
-- Assess quality (CheckM, BUSCO).  
-- Annotate taxonomy & function.  
-
-**Visualisations**
-- Phylogenetic trees of MAGs.  
-- Completeness vs contamination scatterplots.  
-- Heatmaps of genome abundance.  
-
-**Hypotheses**
-- Are specific genomes enriched in certain environments?  
-- Do MAGs carry unique functions or AMR genes?  
-
----
-
-## **8. Correlation & Network Analysis**
 
 **Methodology**
-- Correlate taxa/functions with metadata (Spearman, Pearson, SparCC).  
-- Build co-occurrence networks.  
+
+- Assemble reads (MEGAHIT, metaSPAdes)
+ 
+- Bin contigs (MetaBAT, MaxBin, CONCOCT)
+ 
+- Assess quality (CheckM, BUSCO)
+  
+- Annotate taxonomy & function
+
 
 **Visualisations**
-- Correlation heatmaps.  
-- Microbial association networks.  
+
+- Phylogenetic trees of MAGs
+ 
+- Completeness vs contamination scatterplots
+  
+- Heatmaps of genome abundance
+
 
 **Hypotheses**
-- Do certain microbes co-occur or exclude each other?  
-- Are microbial associations altered under specific conditions?  
 
----
+- Are specific genomes enriched in certain environments? 
+ 
+- Do MAGs carry unique functions or AMR genes?
+- 
 
-## **9. Machine Learning & Predictive Modelling**
+<br />
+
+
+## **8. CORRELATION & NETWORK ANALYSIS**
 
 **Methodology**
-- Feature selection (taxa, pathways).  
-- Train classifiers (Random Forest, SVM, neural networks).  
-- Evaluate with cross-validation.  
+
+- Correlate taxa/functions with metadata (Spearman, Pearson, SparCC)
+ 
+- Build co-occurrence networks
+  
 
 **Visualisations**
-- ROC and PR curves.  
-- Feature importance plots.  
+
+- Correlation heatmaps
+  
+- Microbial association networks
+  
 
 **Hypotheses**
-- Can microbiome features predict host phenotype or environment?  
+
+- Do certain microbes co-occur or exclude each other? 
+ 
+- Are microbial associations altered under specific conditions?
+- 
+
+<br />
+
+
+## **9. MACHINE LEARNING & PREDICTIVE MODELLING**
+
+**Methodology**
+
+- Feature selection (taxa, pathways)
+  
+- Train classifiers (Random Forest, SVM, neural networks)
+ 
+- Evaluate with cross-validation
+ 
+
+**Visualisations**
+
+- ROC and PR curves
+  
+- Feature importance plots
+  
+
+**Hypotheses**
+
+- Can microbiome features predict host phenotype or environment?
+  
 - Which features are most predictive?  
 
----
+<br />
 
-# ✅ Core Hypothesis Themes
-1. **Community Composition** – Do taxa differ between groups?  
-2. **Diversity** – Are alpha/beta diversity metrics significantly different?  
-3. **Differential Abundance** – Which microbes or functions are enriched/depleted?  
-4. **Functional Potential** – Do metabolic pathways differ across microbiomes?  
-5. **AMR Burden** – Are resistance genes more prevalent in certain environments?  
-6. **Ecological Interactions** – Do co-occurrence patterns change?  
-7. **Prediction** – Can microbiome profiles classify or predict phenotypes?  
 
----
+## **SUMMARY**
 
-# 📊 Matrix: Analysis → Methodology → Visualisation → Hypotheses
+
+### **1. Do taxa differ between groups?**
+
+> Community Composition Analysis   
+
+
+### **2. Are alpha/beta diversity metrics significantly different?**
+
+> Diversity Analysis
+
+  
+### **3. Which microbes or functions are enriched/depleted?**
+
+> Differential Abundance Analysis
+ 
+ 
+### **4. Do metabolic pathways differ across microbiomes?** 
+
+> Functional Profiling
+
+
+### **5. Are resistance genes more prevalent in certain environments?**
+
+> AMR Analysis
+ 
+
+### **6. Do co-occurrence patterns change?**
+
+> Ecological Interactions Analysis
+ 
+ 
+### **7. Can microbiome profiles classify or predict phenotypes?**
+
+> Prediction  
+
+<br />
+
+
+## **Matrix: Analysis → Methodology → Visualisation → Hypotheses**
+
 
 | Analysis Step | Methodology | Visualisations | Hypotheses Tested |
 |---------------|-------------|----------------|-------------------|
@@ -257,5 +423,5 @@ It walks through **analysis steps, methods, visualisation techniques, and some e
 | **Correlation & Networks** | Spearman, SparCC | Heatmaps, networks | Do microbes co-occur/exclude across conditions? |
 | **Machine Learning** | Random Forest, SVM | ROC/PR curves, feature plots | Can microbiomes predict phenotypes? |
 
----
+<br />
 
