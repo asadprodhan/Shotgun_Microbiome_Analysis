@@ -243,8 +243,3 @@ This allows us to:
 
 ---
 
-## 🔑 Keywords
-
-**Analysis • Methodology • Visualisation • Hypothesis Testing**
-
----
