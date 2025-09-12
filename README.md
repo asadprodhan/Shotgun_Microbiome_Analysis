@@ -56,6 +56,10 @@ This allows us to:
 
 ## **1. Data Processing & Quality Control**
 
+**Questions**  
+- Is sequencing depth consistent across samples?  
+- Are host reads disproportionately removed in some samples?  
+
 **Methodology**  
 - Check read quality → *FastQC, MultiQC*  
 - Trim adapters & low-quality reads → *Trimmomatic, fastp*  
@@ -65,13 +69,13 @@ This allows us to:
 **Visualisations**  
 - QC plots: base quality, GC content  
 
-**Hypotheses**  
-- Is sequencing depth consistent across samples?  
-- Are host reads disproportionately removed in some samples?  
-
 ---
 
 ## **2. Taxonomic Composition**
+
+**Questions**  
+- Do microbial communities differ between healthy vs diseased (or treatment vs control)?  
+- Tests: PERMANOVA, ANOSIM, DESeq2, ANCOM, MaAsLin2  
 
 **Methodology**  
 - Assign taxonomy:  
@@ -84,28 +88,27 @@ This allows us to:
 - Heatmaps  
 - Krona or sunburst charts  
 
-**Hypotheses**  
-- Do microbial communities differ between healthy vs diseased (or treatment vs control)?  
-- Tests: PERMANOVA, ANOSIM, DESeq2, ANCOM, MaAsLin2  
-
 ---
 
 ## **3. Diversity Analyses**
 
+**Questions**  
+- Is within-sample diversity different between groups?  
+- Is between-sample variation higher across conditions?  
+
+
 **Methodology**  
 - **Alpha diversity**: Shannon, Simpson, Chao1  
 - **Beta diversity**: Bray–Curtis, Jaccard, UniFrac  
-- Ordination: PCoA, PCA, NMDS  
+- Ordination: PCoA, PCA, NMDS
+- Tests: Mann–Whitney, Kruskal–Wallis, PERMANOVA
 
 **Visualisations**  
 - Boxplots of alpha diversity  
 - PCoA/PCA scatterplots  
 - Dendrograms  
 
-**Hypotheses**  
-- Is within-sample diversity different between groups?  
-- Is between-sample variation higher across conditions?  
-- Tests: Mann–Whitney, Kruskal–Wallis, PERMANOVA  
+
 
 ---
 
