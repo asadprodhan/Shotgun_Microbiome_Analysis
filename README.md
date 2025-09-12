@@ -114,6 +114,9 @@ This allows us to:
 
 ## **4. Differential Abundance**
 
+**Question**  
+- Which taxa are enriched/depleted under specific conditions?  
+
 **Methodology**  
 - Normalise counts (e.g., CLR, library-size correction)  
 - Identify enriched taxa → *DESeq2, LEfSe, ANCOM, MaAsLin2*  
@@ -123,51 +126,52 @@ This allows us to:
 - Heatmaps of significant taxa  
 - LEfSe cladograms  
 
-**Hypotheses**  
-- Which taxa are enriched/depleted under specific conditions?  
-
 ---
 
 ## **5. Functional Profiling**
 
+**Questions**  
+- Do functions differ across groups?  
+- Are certain metabolic pathways enriched in disease?  
+  
 **Methodology**  
 - Annotate gene families: eggNOG, KEGG  
 - Map to pathways: MetaCyc, KEGG modules  
-- Quantify pathway abundance → *HUMAnN3*  
+- Quantify pathway abundance → *HUMAnN3*
+- Tests: GSEA, Fisher’s exact, regression models
 
 **Visualisations**  
 - Heatmaps of pathways  
 - Barplots of enriched functions  
 - Bubble plots for enrichment  
 
-**Hypotheses**  
-- Do functions differ across groups?  
-- Are certain metabolic pathways enriched in disease?  
-- Tests: GSEA, Fisher’s exact, regression models  
-
 ---
 
 ## **6. Antimicrobial Resistance (AMR) Analysis**
 
+**Questions**  
+- Are AMR genes enriched in treated vs untreated samples?  
+- Do hospital wastewater and soil carry distinct AMR profiles?  
+  
 **Methodology**  
 - Screen reads/contigs → AMR databases (*CARD, ResFinder, ARG-ANNOT, MEGARes*)  
 - Quantify resistance by class/mechanism  
-- Normalise counts (RPKM, CPM)  
+- Normalise counts (RPKM, CPM)
+- Tests: DESeq2, MaAsLin2, correlation analyses
 
 **Visualisations**  
 - Barplots of AMR gene classes  
 - Heatmaps of AMR distribution  
 - Networks: AMR genes ↔ taxa  
 
-**Hypotheses**  
-- Are AMR genes enriched in treated vs untreated samples?  
-- Do hospital wastewater and soil carry distinct AMR profiles?  
-- Tests: DESeq2, MaAsLin2, correlation analyses  
-
 ---
 
 ## **7. Metagenome-Assembled Genomes (MAGs)**
 
+**Questions**  
+- Are certain genomes enriched in specific environments?  
+- Do MAGs reveal novel functions or AMR genes?
+   
 **Methodology**  
 - Assembly → MEGAHIT, metaSPAdes  
 - Binning → MetaBAT, MaxBin, CONCOCT  
@@ -179,14 +183,14 @@ This allows us to:
 - Completeness vs contamination plots  
 - Abundance heatmaps  
 
-**Hypotheses**  
-- Are certain genomes enriched in specific environments?  
-- Do MAGs reveal novel functions or AMR genes?  
-
 ---
 
 ## **8. Correlation & Network Analysis**
 
+**Questions**  
+- Do microbes co-occur or exclude each other?  
+- Are microbial networks altered under stress/disease?
+  
 **Methodology**  
 - Correlate microbes/functions with metadata → *Spearman, Pearson, SparCC*  
 - Build **co-occurrence networks**  
@@ -195,13 +199,13 @@ This allows us to:
 - Correlation heatmaps  
 - Microbial interaction networks  
 
-**Hypotheses**  
-- Do microbes co-occur or exclude each other?  
-- Are microbial networks altered under stress/disease?  
-
 ---
 
 ## **9. Machine Learning & Predictive Modelling**
+
+**Questions**  
+- Can microbiome features predict phenotype or environment?  
+- Which features are most predictive?  
 
 **Methodology**  
 - Feature selection: taxa, pathways  
@@ -211,10 +215,6 @@ This allows us to:
 **Visualisations**  
 - ROC & PR curves  
 - Feature importance plots  
-
-**Hypotheses**  
-- Can microbiome features predict phenotype or environment?  
-- Which features are most predictive?  
 
 ---
 
