@@ -1,4 +1,4 @@
-<h1 align="center">Shotgun Microbiome Analysis</h1>
+<h1 align="center">Introduction to Shotgun Microbiome Analysis</h1>
 
 <h3 align="center">M. Asaduzzaman Prodhan<sup>*</sup> </h3>
 
